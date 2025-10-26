@@ -4,10 +4,23 @@ import Quickshell
 import Quickshell.Widgets
 import "../"
 
-//troca pra popupWindow 
-
 PanelWindow {
     required property var parentMouseArea
+    required property var parentHeight
+
+    property var actions: [
+        {
+            text: "Desligar",
+            icon: "../icons/shutdown.png",
+            command: 'echo "pires" | sudo -S shutdown -h now'
+        },
+
+        {
+            text: "Trocar Wallpaper",
+            icon: "../icons/changewallpaper.png",
+            command: "change-wallpaper.sh"
+        },
+    ]
 
     id: panel
 
@@ -21,8 +34,9 @@ PanelWindow {
         left: true
         bottom: true
     }
+
     margins{
-        bottom: parent.height
+        bottom: this.parentHeight
     }
 
     Rectangle{
@@ -34,6 +48,30 @@ PanelWindow {
         opacity: 0.8
         topRightRadius: 20
 
+        Column{
+
+            spacing:1
+            topPadding: 20
+            leftPadding: 5
+
+            Repeater{
+                id: repeater
+                model: panel.actions
+                delegate:UserMenuItem{
+                    required property var index
+
+                    width:panel.width - parent.leftPadding - 1
+                    height: panel.height/8
+
+                    command: panel.actions[index].command
+                    icon: panel.actions[index].icon
+                    text: panel.actions[index].text
+                }
+
+            }
+
+        }
+
     }
 
     MouseArea{
@@ -44,14 +82,14 @@ PanelWindow {
         hoverEnabled:true
 
         onEntered: {
-            root.isBarVisible = true 
-        }
+            panel.margins.bottom = 0
+            panel.visible = true
+        } 
 
         onExited: {
-            if (!panel.parentMouseArea.containsMouse)
-                root.isBarVisible = false
-                panel.visible = false
-            }
+            panel.margins.bottom = panel.parentHeight
+            panel.visible = false
+        }
     }
 
-}  
+}

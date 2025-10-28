@@ -38,7 +38,7 @@ Rectangle{
         onExited: parent.color = Colors.background
 
         onPressed: {
-            menu_user.visible = !menu_user.visible
+            menu_user.isVisible = !menu_user.isVisible
         }
     }
 

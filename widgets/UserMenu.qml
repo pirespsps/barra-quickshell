@@ -7,26 +7,25 @@ import "../"
 PanelWindow {
     required property var parentMouseArea
     required property var parentHeight
+    property bool isVisible: false
 
-    property var actions: [
+    property var actions: [ //sem " " nos comandos!
         {
             text: "Desligar",
             icon: "../icons/shutdown.png",
-            command: 'echo "pires" | sudo -S shutdown -h now'
+            command: "sh -c shutdown.sh"
         },
 
         {
             text: "Trocar Wallpaper",
             icon: "../icons/changewallpaper.png",
-            command: "change-wallpaper.sh"
+            command: "sh -c change-wallpaper.sh"
         },
+
     ]
 
     id: panel
-
-    width: 300
-    height: 400
-    visible: false
+    visible: isVisible
     color: "transparent"
     exclusiveZone: 0
 
@@ -36,8 +35,11 @@ PanelWindow {
     }
 
     margins{
-        bottom: this.parentHeight
+        bottom: mouse.hovered? 0 : this.parentHeight
     }
+
+    width: 200
+    height: mouse.hovered? 350 : 350 - this.parentHeight
 
     Rectangle{
 
@@ -72,23 +74,18 @@ PanelWindow {
 
     }
 
-    MouseArea{
-        id: mouseArea
-        anchors.fill: parent
-        height:parent.height
-        width: parent.width
-        hoverEnabled:true
-        acceptedButtons: Qt.NoButton
-        propagateComposedEvents: true
+    HoverHandler{
+        id: mouse
+        blocking: false
+        target: panel
+        
 
-        onEntered: {
-            panel.margins.bottom = 0
-            panel.visible = true
-        } 
-
-        onExited: {
-            panel.margins.bottom = panel.parentHeight
-            panel.visible = false
+        onHoveredChanged:{
+            if(mouse.hovered){
+                panel.isVisible = true
+            }else{
+                panel.isVisible = false
+            }
         }
     }
 

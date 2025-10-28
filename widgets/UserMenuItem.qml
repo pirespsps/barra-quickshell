@@ -11,18 +11,19 @@ Rectangle{
 
     width:parent.width
     height: parent.height/8
-    color: Colors.background
+    color: mouse.hovered? Colors.active : Colors.background
     opacity: 0.9
 
     Row{
         spacing: 10
         x: parent.x
 		height: parent.height
+		width: parent.width
         leftPadding: 5
 
         Image{
-            width: 30
-            height: 30
+            width: parent.width/8.5
+            height: parent.height/1.8
             y: parent.height / 2 - this.height/2
             source: item.icon
             mipmap: true
@@ -38,20 +39,16 @@ Rectangle{
 
     }
 
-    //muda esse pra pointHandler e tapHandler
-    MouseArea{
-
-        anchors.fill: item
-        height:item.height
-        width: item.width
-        hoverEnabled:true
-
-        onEntered: item.color = Colors.active
-
-        onExited: item.color = Colors.background
-
-        onPressed: process.running = true
+    HoverHandler{
+        id: mouse
+        blocking: false
     }
+
+    TapHandler {
+    onTapped: {
+        process.running = true
+    }
+}
 
     Process{
         id: process

@@ -4,9 +4,8 @@ import "../"
 
 Rectangle{
 
-	SystemClock {
- 		id: clock
-  		precision: SystemClock.Hour
+	Date{
+		id: data
 	}
 
 	x: barra.width - this.width 
@@ -19,7 +18,7 @@ Rectangle{
 
 	Text{
 		anchors.centerIn: parent
-		text: Qt.formatDate(clock.date, "MMMM dd",)
+		text: data.text
 		color: Colors.foreground
 		font.pixelSize: 12
 	}

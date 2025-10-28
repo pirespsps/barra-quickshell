@@ -50,9 +50,7 @@ PanelWindow {
 
         Column{
 
-            spacing:1
             topPadding: 20
-            leftPadding: 5
 
             Repeater{
                 id: repeater
@@ -60,7 +58,7 @@ PanelWindow {
                 delegate:UserMenuItem{
                     required property var index
 
-                    width:panel.width - parent.leftPadding - 1
+                    width:panel.width - 1
                     height: panel.height/8
 
                     command: panel.actions[index].command
@@ -80,6 +78,8 @@ PanelWindow {
         height:parent.height
         width: parent.width
         hoverEnabled:true
+        acceptedButtons: Qt.NoButton
+        propagateComposedEvents: true
 
         onEntered: {
             panel.margins.bottom = 0

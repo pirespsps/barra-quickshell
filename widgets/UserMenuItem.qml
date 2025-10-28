@@ -18,6 +18,7 @@ Rectangle{
         spacing: 10
         x: parent.x
 		height: parent.height
+        leftPadding: 5
 
         Image{
             width: 30
@@ -37,6 +38,7 @@ Rectangle{
 
     }
 
+    //muda esse pra pointHandler e tapHandler
     MouseArea{
 
         anchors.fill: item

@@ -2,7 +2,6 @@ import QtQuick
 import Quickshell.Widgets
 import "../"
 
-
 Rectangle{
 
 Workspace{

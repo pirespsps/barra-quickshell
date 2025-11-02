@@ -9,11 +9,17 @@ PanelWindow {
     required property var parentHeight
     property bool isVisible: false
 
-    property var actions: [ //sem " " nos comandos!
+    property var actions: [
         {
             text: "Desligar",
             icon: "../icons/shutdown.png",
             command: "sh -c shutdown.sh"
+        },
+
+        {
+            text: "Reboot",
+            icon: "../icons/reboot.png",
+            command: "sh -c reboot.sh"
         },
 
         {
@@ -78,7 +84,6 @@ PanelWindow {
         id: mouse
         blocking: false
         target: panel
-        
 
         onHoveredChanged:{
             if(mouse.hovered){

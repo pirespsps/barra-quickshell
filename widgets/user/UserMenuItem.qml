@@ -1,7 +1,7 @@
 import Quickshell
 import QtQuick
 import Quickshell.Io
-import "../"
+import "../../"
 
 Rectangle{
     id: item

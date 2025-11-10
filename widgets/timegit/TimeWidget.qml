@@ -1,5 +1,5 @@
 import QtQuick
-import "../"
+import "../../"
 
 Item{
 	id: timeWidget
@@ -23,6 +23,12 @@ Item{
 		    font.pixelSize: 15
 		}
 
+		GitMenu{
+        id: menu_git
+        parentMouseArea: clickable_area
+        parentHeight: parent.height
+    }
+
 		MouseArea{
         id:clickable_area
         anchors.fill: parent
@@ -31,10 +37,11 @@ Item{
         hoverEnabled:true
 
         onEntered: parent.color = Colors.active
-        onExited: parent.color = "transparent"
+
+        onExited: parent.color = Colors.background
 
         onPressed: {
-            //...
+            menu_git.isVisible = !menu_git.isVisible
         }
     }
 

@@ -1,7 +1,7 @@
 import QtQuick
 import Quickshell
 import Quickshell.Widgets
-import "../"
+import "../../"
 
 Rectangle{
 
@@ -16,7 +16,7 @@ Rectangle{
         anchors.centerIn: parent
         width: 25
         height: 25
-        source: "../icons/cat.png"
+        source: "../../icons/cat.png"
         mipmap: true
     }
 

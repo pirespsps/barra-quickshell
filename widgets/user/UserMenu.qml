@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import Quickshell
 import Quickshell.Widgets
-import "../"
+import "../../"
 
 PanelWindow {
     required property var parentMouseArea
@@ -12,19 +12,19 @@ PanelWindow {
     property var actions: [
         {
             text: "Desligar",
-            icon: "../icons/shutdown.png",
+            icon: "../../icons/shutdown.png",
             command: "sh -c shutdown.sh"
         },
 
         {
             text: "Reboot",
-            icon: "../icons/reboot.png",
+            icon: "../../icons/reboot.png",
             command: "sh -c reboot.sh"
         },
 
         {
             text: "Trocar Wallpaper",
-            icon: "../icons/changewallpaper.png",
+            icon: "../../icons/changewallpaper.png",
             command: "sh -c change-wallpaper.sh"
         },
 

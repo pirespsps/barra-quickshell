@@ -1,5 +1,7 @@
 import QtQuick
 import "./widgets" as Widgets
+import "./widgets/user" as User
+import "./widgets/timegit" as TimeGit
 
 Rectangle {
 	
@@ -11,7 +13,7 @@ Rectangle {
 		    color: Colors.background
 			opacity:0.8
 
-			Widgets.UserWidget{
+			User.UserWidget{
 				id: user_widget
 				x: 0
 				y: barra.height / 2 - this.height / 2
@@ -22,7 +24,7 @@ Rectangle {
 				x: user_widget.width + 5
 			}
 
-			Widgets.TimeWidget{
+			TimeGit.TimeWidget{
 				id: time_widget
 				x: barra.width / 2
 				y: barra.height / 2 - this.height / 2 

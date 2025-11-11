@@ -15,6 +15,7 @@ Item{
 		width: 50
 		height: barra.height
 		color: "transparent"
+		opacity: 0.8
 
 		Text {
 		    anchors.centerIn: parent

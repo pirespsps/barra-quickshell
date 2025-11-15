@@ -29,7 +29,7 @@ PanelWindow {
         bottom: mouse.hovered? 0 : this.parentHeight
     }
 
-    width: 1000
+    width: 800
     height: mouse.hovered? 240 : 240 - this.parentHeight
 
     Rectangle{
@@ -41,6 +41,7 @@ PanelWindow {
         opacity: 0.8
         topRightRadius: 20
         topLeftRadius: 20
+        x: parent.width/2 - this.width/2
 
         Rectangle{
             anchors.centerIn: parent
@@ -49,10 +50,10 @@ PanelWindow {
             radius: 10
             width: parent.width/1.03
             height: parent.height/1.05
-            
+
             Column{
                 topPadding: 5
-                Row{
+                Row{ //icon e user
                     leftPadding:7
                     
                     Rectangle{
@@ -84,17 +85,42 @@ PanelWindow {
                 }
                 Row{
 
-                    spacing: 10
                     height: panel.height * 0.95
-                    topPadding: panel.height/2 - this.height/2
+                    topPadding: parent.height/2 - this.height/2
 
                     Repeater{
-                        id: repeater
+                        id: repeater_month
                         model: git.commits
                         delegate: Rectangle{
-                            width: panel.width/14
-                            height: panel.height * 0.6
+                            
+                            required property var index
+                            
+                            id: month
+                            width: panel.width/12.5; height: panel.height * 0.5
                             color: Colors.active
+                            Repeater{
+                                
+                                property var columns: 4
+                                property var rows: 8
+                                
+                                id: repeater_day
+                                model: git.commits[index]
+                                delegate: Rectangle{
+
+                                    required property var index
+                                    property var row: Math.floor(index/repeater_day.columns)
+                                    property var col: index - repeater_day.columns * Math.floor(index/repeater_day.columns)
+
+                                    width: month.width/repeater_day.columns
+                                    height: month.height/repeater_day.rows 
+                                    
+                                    y: row * height
+                                    x: col * width
+
+                                    color: git.commits[month.index][index]? "#004d02" : Colors.background
+                                    radius:5
+                                }
+                            }
                         }
                     }
                 }

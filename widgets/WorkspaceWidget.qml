@@ -35,6 +35,8 @@ Row{
         verticalAlignment: Text.AlignVCenter
         topPadding: parent.height/2 - font.pixelSize / 2
         leftPadding: 10
+        width: 450
+        elide: Text.ElideRight
     }
 }
 

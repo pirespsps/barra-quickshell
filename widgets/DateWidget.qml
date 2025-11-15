@@ -12,7 +12,7 @@ Rectangle{
 	y: barra.height / 2 - this.height / 2
 
 	radius: 2
-	width: 80
+	width: 88
 	height: barra.height 
 	color: Colors.background
 

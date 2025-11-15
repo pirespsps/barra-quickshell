@@ -29,8 +29,8 @@ PanelWindow {
         bottom: mouse.hovered? 0 : this.parentHeight
     }
 
-    width: 700
-    height: mouse.hovered? 230 : 230 - this.parentHeight
+    width: 1000
+    height: mouse.hovered? 240 : 240 - this.parentHeight
 
     Rectangle{
 
@@ -42,10 +42,9 @@ PanelWindow {
         topRightRadius: 20
         topLeftRadius: 20
 
-        // rectangle com git 
         Rectangle{
             anchors.centerIn: parent
-            color: Colors.background
+            color: "transparent"
             opacity: 0.8
             radius: 10
             width: parent.width/1.03
@@ -83,6 +82,22 @@ PanelWindow {
 		                font.pixelSize: 18
                         leftPadding:7
 		            }
+                }
+                Row{
+
+                    spacing: 10
+                    height: panel.height * 0.95
+                    topPadding: panel.height/2 - this.height/2
+
+                    Repeater{
+                        id: repeater
+                        model: git.commits
+                        delegate: Rectangle{
+                            width: panel.width/14
+                            height: panel.height * 0.6
+                            color: Colors.active
+                        }
+                    }
                 }
             }
         }

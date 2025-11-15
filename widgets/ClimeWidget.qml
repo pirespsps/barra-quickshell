@@ -24,7 +24,7 @@ Rectangle{
         Image{
             source: clime.icon
 			mipmap: true
-			y: parent.height - this.height
+			y: parent.height/2 - this.height/2
 			width: 29
 			height: 29
             }

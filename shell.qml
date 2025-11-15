@@ -55,7 +55,7 @@ ShellRoot {
 		visible: root.isBarVisible
 		screen: root.modelData
 		color: "transparent"
-	 	height: 30
+	 	height: 33
 		exclusiveZone: 0
 
 		anchors {

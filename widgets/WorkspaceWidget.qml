@@ -27,6 +27,15 @@ Row{
             }
         }
     }
+
+    Text{
+        text: workspace.activeName
+        color: Colors.foreground
+        opacity: 0.85
+        verticalAlignment: Text.AlignVCenter
+        topPadding: parent.height/2 - font.pixelSize / 2
+        leftPadding: 10
+    }
 }
 
 }

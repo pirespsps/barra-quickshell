@@ -4,7 +4,22 @@ import QtQuick
 
 Scope {
     id: root
-    property var commits: []
+    //placeholder
+    property var commits: [
+	[true,true,true,true,true,false,true,true,true,true,false,false,false,true,false,false,false,false,false,false,true,false,true,true,false,true,true,true,true,true,true],
+	[true,true,true,false,false,true,true,true,true,true,true,true,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
+	[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true],
+	[false,false,false,false,false,false,false,false,false,false,true,true,true,true,true,true,false,false,false,true,false,true,false,false,true,true,false,true,false,true,false],
+	[true,false,false,false,false,false,false,false,true,true,true,false,true,true,false,true,false,true,true,true,true,true,true,true,true,true,true,true,true,true],
+    [true,true,true,true,true,false,true,true,true,true,false,false,false,true,false,false,false,false,false,false,true,false,true,true,false,true,true,true,true,true,true],
+	[true,true,true,false,false,true,true,true,true,true,true,true,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
+	[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true],
+	[false,false,false,false,false,false,false,false,false,false,true,true,true,true,true,true,false,false,false,true,false,true,false,false,true,true,false,true,false,true,false],
+	[true,false,false,false,false,false,false,false,true,true,true,false,true,true,false,true,false,true,true,true,true,true,true,true,true,true,true,true,true,true],
+	[true,false,false,false,false,false,false,false,true,true,true,false,true,true,false,true,false,true,true,true,true,true,true,true,true,true,true,true,true,true],
+	[true,false,false,false,false,false,false,false,true,true,true,false,true,true,false,true,false,true,true,true,true,true,true,true,true,true,true,true,true,true],
+
+]
 	property var icon
     property var name 
 
@@ -23,21 +38,20 @@ Scope {
         onExited: {commitsTimer.start()}
     }
 
-    Process {
-	id: commitsProc
-	command: ["github-wrapper-json"]
-	//bin não está funcionando por algum motivo
-	running: false
-
-	stdout: StdioCollector {
-
-	    onStreamFinished: {
-
-		var data = JSON.parse(this.text)
-
-		}
-    	}
-	}
+    //fazer depois, design primeiro!
+    //Process {
+	//id: commitsProc
+	//command: ["github-wrapper-json"]
+	//running: false
+//
+	//stdout: StdioCollector {
+//
+	//    onStreamFinished: {
+//
+	//	var data = JSON.parse(this.text)
+	//	}
+    //	}
+	//}
 
     Timer{
         id: commitsTimer 

@@ -6,6 +6,7 @@ Scope {
     id: root
     property var workspaces: []
     property var active 
+    property var activeName
 
     Process{
         id: activeProc
@@ -16,6 +17,7 @@ Scope {
             onStreamFinished:{
                 var data = JSON.parse(this.text)
                 root.active = data.id
+                root.activeName = data.lastwindowtitle
             }
         }
     }

@@ -14,7 +14,8 @@ Rectangle{
 	radius: 2
 	width: 80
 	height: barra.height
-	color: Colors.background
+	//color: Colors.background
+	color: "transparent"
 
     Row{
 		anchors.centerIn: parent
@@ -47,7 +48,7 @@ Rectangle{
     hoverEnabled:true
 
     onEntered: parent.color = Colors.active
-    onExited: parent.color = Colors.background
+    onExited: parent.color = "transparent"
 
     onPressed: {
             //...

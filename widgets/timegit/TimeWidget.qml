@@ -39,7 +39,7 @@ Item{
 
         onEntered: parent.color = Colors.active
 
-        onExited: parent.color = Colors.background
+        onExited: parent.color = "transparent"
 
         onPressed: {
             menu_git.isVisible = !menu_git.isVisible

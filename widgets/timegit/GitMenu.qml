@@ -64,7 +64,6 @@ PanelWindow {
                         radius: 60
                         clip: true
 
-                        //arrumar pra borda cortar...
                         Image{
                             anchors.fill:parent
                             anchors.centerIn: parent

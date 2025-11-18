@@ -8,10 +8,7 @@ Scope {
     property var commits: (function() {
     var arr = [];
         for (var i = 0; i < 12; i++) {
-            var month = [];
-            for (var j = 0; j < 30; j++){
-                month.push(false)
-            };
+            var month = Array(30).fill(false);
             arr.push(month);
         }
         return arr;
@@ -47,7 +44,7 @@ Scope {
 		var data = JSON.parse(this.text)
 		
         for(var key in data){
-            root.commits[parseInt(key)] = data[key];
+            root.commits[parseInt(key)-1] = data[key];
         }
 
         for(var i = 0; i<12; i++){
@@ -57,7 +54,6 @@ Scope {
         }
 
         root.commits = root.commits.slice()
-        console.log(root.commits)
         }
     	}
 	}

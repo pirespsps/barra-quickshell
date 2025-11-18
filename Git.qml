@@ -4,24 +4,21 @@ import QtQuick
 
 Scope {
     id: root
-    //placeholder
-    property var commits: [
-	[true,true,true,true,true,false,true,true,true,true,false,false,false,true,false,false,false,false,false,false,true,false,true,true,false,true,true,true,true,true,true],
-	[true,true,true,false,false,true,true,true,true,true,true,true,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
-	[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true],
-	[false,false,false,false,false,false,false,false,false,false,true,true,true,true,true,true,false,false,false,true,false,true,false,false,true,true,false,true,false,true,false],
-	[true,false,false,false,false,false,false,false,true,true,true,false,true,true,false,true,false,true,true,true,true,true,true,true,true,true,true,true,true,true],
-    [true,true,true,true,true,false,true,true,true,true,false,false,false,true,false,false,false,false,false,false,true,false,true,true,false,true,true,true,true,true,true],
-	[true,true,true,false,false,true,true,true,true,true,true,true,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
-	[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true],
-	[false,false,false,false,false,false,false,false,false,false,true,true,true,true,true,true,false,false,false,true,false,true,false,false,true,true,false,true,false,true,false],
-	[true,false,false,false,false,false,false,false,true,true,true,false,true,true,false,true,false,true,true,true,true,true,true,true,true,true,true,true,true,true],
-	[true,false,false,false,false,false,false,false,true,true,true,false,true,true,false,true,false,true,true,true,true,true,true,true,true,true,true,true,true,true],
-	[true,false,false,false,false,false,false,false,true,true,true,false,true,true,false,true,false,true,true,true,true,true,true,true,true,true,true,true,true,true],
 
-]
+    property var commits: (function() {
+    var arr = [];
+        for (var i = 0; i < 12; i++) {
+            var month = [];
+            for (var j = 0; j < 30; j++){
+                month.push(false)
+            };
+            arr.push(month);
+        }
+        return arr;
+    })()
 	property var icon
-    property var name 
+    property var name
+    property var months: ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"]
 
     Process{
         id: userDataProc
@@ -38,20 +35,32 @@ Scope {
         onExited: {commitsTimer.start()}
     }
 
-    //fazer depois, design primeiro!
-    //Process {
-	//id: commitsProc
-	//command: ["github-wrapper-json"]
-	//running: false
-//
-	//stdout: StdioCollector {
-//
-	//    onStreamFinished: {
-//
-	//	var data = JSON.parse(this.text)
-	//	}
-    //	}
-	//}
+    Process {
+	id: commitsProc
+	command: ["github-wrapper-json"]
+	running: false
+
+	stdout: StdioCollector {
+
+	    onStreamFinished: {
+
+		var data = JSON.parse(this.text)
+		
+        for(var key in data){
+            root.commits[parseInt(key)] = data[key];
+        }
+
+        for(var i = 0; i<12; i++){
+            if(root.commits[i] === null){
+                root.commits[i] = Array(30).fill(false);
+            }
+        }
+
+        root.commits = root.commits.slice()
+        console.log(root.commits)
+        }
+    	}
+	}
 
     Timer{
         id: commitsTimer 
@@ -59,6 +68,10 @@ Scope {
 	    running: false
 	    repeat: false
 	    onTriggered: commitsProc.running = true
+    }
+
+    function numberToMonth(n){
+        return months[n];
     }
 
 }

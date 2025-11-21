@@ -110,8 +110,11 @@ PanelWindow {
                                     delegate: Rectangle {
                                         required property int index
 
-                                        property int row: Math.floor(index / repeater_day.columns)
-                                        property int col: index - repeater_day.columns * Math.floor(index / repeater_day.columns)
+                                        //property int row: Math.floor(index / repeater_day.columns)
+                                        //property int col: index - repeater_day.columns * Math.floor(index / repeater_day.columns)
+
+                                        property int row: index - repeater_day.rows * Math.floor(index / repeater_day.rows)
+                                        property int col: Math.floor(index/repeater_day.rows)
 
                                         width: month.width / repeater_day.columns
                                         height: month.height / repeater_day.rows

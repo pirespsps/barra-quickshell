@@ -16,7 +16,7 @@ Rectangle{
         anchors.centerIn: parent
         width: 25
         height: 25
-        source: "../../icons/cat.png"
+        source: "/home/pires/.config/quickshell/barra-quickshell/assets/icons/cat.png"
         mipmap: true
     }
 

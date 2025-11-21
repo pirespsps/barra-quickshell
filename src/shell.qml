@@ -19,7 +19,7 @@ ShellRoot {
 
 			id: mouseListener
 			screen: root.modelData
-			height: 10
+			implicitHeight: 10
 			color: "transparent"
 			visible: true
 			exclusiveZone:0
@@ -34,7 +34,7 @@ ShellRoot {
 
 			id: mouseArea
 			anchors.fill: parent
-			height: parent.height
+			implicitHeight: parent.height
 			hoverEnabled: true
 			
 			onEntered:root.isBarVisible = true
@@ -55,7 +55,7 @@ ShellRoot {
 		visible: root.isBarVisible
 		screen: root.modelData
 		color: "transparent"
-	 	height: 35
+	 	implicitHeight: 35
 		exclusiveZone: 0
 
 		anchors {
@@ -67,7 +67,7 @@ ShellRoot {
 		MouseArea {
         id: barraMouseArea
         anchors.fill: parent
-		height:parent.height
+		implicitHeight:parent.height
         hoverEnabled: true
 
 		onExited: root.isBarVisible = false

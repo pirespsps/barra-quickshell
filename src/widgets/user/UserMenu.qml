@@ -12,19 +12,19 @@ PanelWindow {
     property var actions: [
         {
             text: "Desligar",
-            icon: "../../../assets/icons/shutdown.png",
+            icon: "/home/pires/.config/quickshell/barra-quickshell/assets/icons/shutdown.png",
             command: "sh -c shutdown.sh"
         },
 
         {
             text: "Reboot",
-            icon: "../../../assets/icons/reboot.png",
+            icon: "/home/pires/.config/quickshell/barra-quickshell/assets/icons/reboot.png",
             command: "sh -c reboot.sh"
         },
 
         {
             text: "Trocar Wallpaper",
-            icon: "../../../assets/icons/changewallpaper.png",
+            icon: "/home/pires/.config/quickshell/barra-quickshell/assets/icons/changewallpaper.png",
             command: "sh -c change-wallpaper.sh"
         },
 

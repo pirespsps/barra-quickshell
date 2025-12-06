@@ -2,6 +2,7 @@ import QtQuick
 import "./widgets" as Widgets
 import "./widgets/user" as User
 import "./widgets/timegit" as TimeGit
+import "./widgets/datespotify" as DateSpotify
 
 Rectangle {
 	
@@ -30,7 +31,7 @@ Rectangle {
 				y: barra.height / 2 - this.height / 2 
 			}
 
-		    Widgets.DateWidget{
+		    DateSpotify.DateWidget{
 			    id: date_widget
 			    x: barra.width - this.width 
 			    y: barra.height / 2 - this.height / 2

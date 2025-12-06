@@ -1,6 +1,6 @@
 import QtQuick
 import Quickshell
-import "../"
+import "../../"
 
 Rectangle{
 
@@ -23,6 +23,12 @@ Rectangle{
 		font.pixelSize: 12
 	}
 
+	SpotifyMenu{
+		id: spotifyMenu
+		parentMouseArea: clickable_area
+        parentHeight: parent.height
+	}
+
 	MouseArea{
         id:clickable_area
         anchors.fill: parent
@@ -34,7 +40,7 @@ Rectangle{
         onExited: parent.color = "transparent"
 
         onPressed: {
-            //...
+            spotifyMenu.isVisible = !spotifyMenu.isVisible
         }
     }
 }

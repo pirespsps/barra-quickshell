@@ -25,10 +25,10 @@ Item{
 		}
 
 		GitMenu{
-        id: menu_git
-        parentMouseArea: clickable_area
-        parentHeight: parent.height
-    }
+        	id: menu_git
+        	parentMouseArea: clickable_area
+        	parentHeight: parent.height
+    	}
 
 		MouseArea{
         id:clickable_area

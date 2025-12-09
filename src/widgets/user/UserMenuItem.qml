@@ -13,6 +13,7 @@ Rectangle{
     height: parent.height/8
     color: mouse.hovered? Colors.active : Colors.background
     opacity: 0.9
+    radius: 10
 
     Row{
         spacing: 10
@@ -45,10 +46,10 @@ Rectangle{
     }
 
     TapHandler {
-    onTapped: {
-        process.running = true
+        onTapped: {
+            process.running = true
+        }
     }
-}
 
     Process{
         id: process

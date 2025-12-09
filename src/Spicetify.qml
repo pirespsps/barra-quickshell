@@ -1,34 +1,44 @@
 import Quickshell
 import Quickshell.Io
 import QtQuick
+import QtWebSockets
 
 
 Scope{
     id: root
-    property var current
+    property var current: ({})
 
-
-    SocketServer {
+    WebSocket{
+        id: socket 
+        url: "ws://localhost:8080/ws"
         active: true
-        path: "/tmp/spicetify.sock"
-        handler: Socket {
-            id: socket
-    
-            onConnectedChanged: {
-                console.log(connected ? "new connection!" : "connection dropped!")
-                
-                if(connected){ //fazer as ações dinâmicas depois..
-                    socket.write(JSON.stringify({
-                    sender: "qsbar",
-                    message: "current"
-                    }))
-                }
-            }
 
-            parser: SplitParser {
-                //não está funcionando, checar se é no go ou aqui..
-                onRead: message => console.log(`read message from socket: ${message}`)
+        onStatusChanged: {
+            if (socket.status == WebSocket.Error) {
+                console.log("Error: " + socket.errorString)
+            } else if (socket.status == WebSocket.Open) {
+                socket.sendTextMessage(JSON.stringify({sender: "qsbar", message: ""}))
+                console.log("Connected")
+            } else if (socket.status == WebSocket.Closed) {
+                console.log("\nSocket closed")
             }
         }
+        
+        onTextMessageReceived: function(json) {
+
+            root.current = JSON.parse(JSON.parse(json).message)
+
+            root.current = JSON.parse(json)
+
+            console.log("true json: ", JSON.parse(json))
+        }
     }
+
+    function sendMessage(action){
+        socket.sendTextMessage(JSON.stringify({
+            sender: "qsbar",
+            message: action
+        }))
+    }
+
 }

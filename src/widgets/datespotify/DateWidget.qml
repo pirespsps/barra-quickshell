@@ -25,8 +25,6 @@ Rectangle{
 
 	SpotifyMenu{
 		id: spotifyMenu
-		parentMouseArea: clickable_area
-        parentHeight: parent.height
 	}
 
 	MouseArea{

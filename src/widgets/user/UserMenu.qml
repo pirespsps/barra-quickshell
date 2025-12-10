@@ -5,8 +5,6 @@ import Quickshell.Widgets
 import "../../"
 
 PanelWindow {
-    required property var parentMouseArea
-    required property var parentHeight
     property bool isVisible: false
 
     property var actions: [
@@ -40,12 +38,8 @@ PanelWindow {
         bottom: true
     }
 
-    margins{
-        bottom: mouse.hovered? 0 : this.parentHeight
-    }
-
     width: 200
-    height: mouse.hovered? 350 : 350 - this.parentHeight
+    height: 350
 
     Rectangle{
 

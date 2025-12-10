@@ -24,12 +24,8 @@ PanelWindow {
         bottom: true
     }
 
-    margins {
-        bottom: mouse.hovered ? 0 : parentHeight
-    }
-
     width: 800
-    height: mouse.hovered ? 220 : 220 - parentHeight
+    height: 220 
 
     Rectangle {
         anchors.centerIn: parent

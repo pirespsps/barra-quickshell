@@ -22,8 +22,6 @@ Rectangle{
 
     UserMenu{
         id: menu_user
-        parentMouseArea: clickable_area
-        parentHeight: parent.height
     }
 
     MouseArea{

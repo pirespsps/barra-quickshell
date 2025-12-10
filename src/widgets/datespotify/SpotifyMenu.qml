@@ -10,9 +10,6 @@ PanelWindow {
         id: spicetify
     }
 
-    required property var parentMouseArea
-    required property var parentHeight
-
     property bool isVisible: false
 
     id: panel
@@ -25,12 +22,8 @@ PanelWindow {
         right: true
     }
 
-    margins {
-        bottom: mouse.hovered ? 0 : parentHeight
-    }
-
     width: 500
-    height: mouse.hovered ? 250 : 250 - parentHeight
+    height: 250
 
     Rectangle {
         anchors.centerIn: parent

@@ -100,12 +100,17 @@ PanelWindow {
                         action: "next"
                         spicetify: spicetify
                     }
-                    
-                    //previous
-                    //play
-                    //next
                 }
                 
+            }
+
+            Column{
+                width: parent.width
+                height: parent.height
+                leftPadding: parent.width/1.8 + 80
+                VolumeButton{
+                    id: volume
+                }
             }
 
         }

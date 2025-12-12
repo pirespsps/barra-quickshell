@@ -6,13 +6,15 @@ Row{
     width: parent.width
     height: parent.height
 
-    //Image{
-    //    anchors.centerIn: parent
-    //    source: "/home/pires/.config/quickshell/barra-quickshell/assets/icons/volume.png"
-    //    height: 15
-    //    width: 15
-    //    mipmap: true
-    //}
+    Image{
+        source: activeVol.width > 0? 
+        "/home/pires/.config/quickshell/barra-quickshell/assets/icons/volume.png"
+        :"/home/pires/.config/quickshell/barra-quickshell/assets/icons/mute.png"
+        height: 18
+        width: 18
+        mipmap: true
+        y: (parent.height - height) / 2
+    }
 
     Rectangle{
         anchors.centerIn: parent
@@ -25,7 +27,7 @@ Row{
         Rectangle{
             id: activeVol
             height: barraVol.height
-            width: handler.xAxis.activeValue
+            width: drag.xAxis.activeValue
             color: "white"
         }
 
@@ -35,17 +37,31 @@ Row{
             width: 5
             height:20
             y: (barraVol.height - height) /2
-            x: 0
+            x: 0 //pegar do volume do spotify...
         }
+
+        TapHandler{
+            id: tap
+            target: buttonVol
+            //arrumar a barrinha
+        }
+
+        //checar quando largar pra fazer a request....
 
         DragHandler{
-            id:handler
+            id:drag
             target: buttonVol
             yAxis.enabled: false
+
             xAxis.maximum: barraVol.width - barraVol.radius
             xAxis.minimum: 0
-
         }
+
+        //fazer outro tapHandler pra mover o drag com um só click
         
+    }
+
+    function currentVolume(){
+        return 100 * activeVol.width / barraVol.width
     }
 }

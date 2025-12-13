@@ -13,7 +13,7 @@ Rectangle{
     property var alternativeLogo
     property var isAlternative: false
 
-    color: mouse.hovered? Colors.active : "transparent"
+    color: mouse.hovered? Colors.background : "transparent"
     height: 25
     width: 25
     radius: 8

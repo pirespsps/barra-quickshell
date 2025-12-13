@@ -30,16 +30,19 @@ PanelWindow {
         width: parent.width
         height: parent.height
         color: Colors.background
-        opacity: 0.8
+        opacity: 1
         topLeftRadius: 20
 
         Rectangle{
             width: parent.width/1.8
             height: parent.height
-            color: "transparent"
-            topLeftRadius: 20
+            color: Colors.active
+            radius: 20
+            border.color: Colors.background
+            border.width: 3
 
             Column{
+                id: leftSide
                 anchors.centerIn: parent
                 topPadding: 5
                 width: parent.width
@@ -105,16 +108,19 @@ PanelWindow {
                 
             }
 
-            Column{
-                width: parent.width
+            Rectangle{
+                width: panel.width - leftSide.width
                 height: parent.height
-                leftPadding: parent.width/1.8 + 83
+                x: leftSide.width
+                color: "transparent"
 
                 VolumeButton{
                     id: volume
                     spicetify: spicetify
-                    leftPadding: 30
-                }
+                    y: parent.height - 25
+                    x: 5
+                }    
+                
             }
 
         }

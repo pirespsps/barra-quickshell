@@ -12,6 +12,7 @@ Row{
     id: root
     width: parent.width
     height: parent.height
+    spacing: 5
 
     Image{
         id: volumeImg
@@ -19,7 +20,6 @@ Row{
         height: 18
         width: 18
         mipmap: true
-        y: (parent.height - height) / 2
 
         TapHandler{
             id: muteHandler
@@ -41,10 +41,9 @@ Row{
     }
 
     Rectangle{
-        anchors.centerIn: parent
         id: barraVol
-        width: 230
-        height: 15
+        width: 185
+        height: 18
         color: "transparent"
 
         Rectangle{

@@ -93,6 +93,7 @@ PanelWindow {
                         image: "/home/pires/.config/quickshell/barra-quickshell/assets/icons/pause.png"
                         action: "play"
                         spicetify: spicetify
+                        alternativeLogo: "/home/pires/.config/quickshell/barra-quickshell/assets/icons/play.png"
                     }
 
                     PlayerButton{
@@ -107,9 +108,12 @@ PanelWindow {
             Column{
                 width: parent.width
                 height: parent.height
-                leftPadding: parent.width/1.8 + 80
+                leftPadding: parent.width/1.8 + 83
+
                 VolumeButton{
                     id: volume
+                    spicetify: spicetify
+                    leftPadding: 30
                 }
             }
 

@@ -20,15 +20,25 @@ Row{
         anchors.centerIn: parent
         id: barraVol
         width: 230
-        height: 5
-        radius:10
-        color: Colors.active
+        height: 15
+        color: "transparent"
+
+        Rectangle{
+            id: beautifulVol
+            width: barraVol.width
+            height: 5
+            radius: 10
+            color:Colors.active
+            x: 0
+            y: (parent.height - height) / 2
+        }
 
         Rectangle{
             id: activeVol
-            height: barraVol.height
-            width: drag.xAxis.activeValue
+            height: beautifulVol.height
+            width: buttonVol.x 
             color: "white"
+            y: (parent.height - height) / 2
         }
 
         Rectangle{
@@ -41,24 +51,31 @@ Row{
         }
 
         TapHandler{
-            id: tap
-            target: buttonVol
-            //arrumar a barrinha
-        }
+            id: tapBar
+            target: barraVol
 
-        //checar quando largar pra fazer a request....
+            onTapped: {
+                buttonVol.x = eventPoint.position.x
+
+                if(!pressed){
+                    //if checando se soltou 
+                    //faz a request
+
+                    //FAZER A REQUEST AQUI!!!!!!!
+                }
+            }
+
+        }
 
         DragHandler{
             id:drag
             target: buttonVol
             yAxis.enabled: false
 
-            xAxis.maximum: barraVol.width - barraVol.radius
+            xAxis.maximum: barraVol.width - beautifulVol.radius
             xAxis.minimum: 0
         }
 
-        //fazer outro tapHandler pra mover o drag com um só click
-        
     }
 
     function currentVolume(){

@@ -20,7 +20,7 @@ Scope {
     Process{
         id: userDataProc
         command: ["gh","api","users/pirespsps"]
-        running: true
+        running: false
 
         stdout: StdioCollector{
             onStreamFinished:{
@@ -60,11 +60,19 @@ Scope {
 
     Timer{
         id: commitsTimer 
-        interval: 61000
+        interval: 65000
 	    running: false
 	    repeat: false
 	    onTriggered: commitsProc.running = true
     }
+
+    Timer {
+	id: timer_init
+    interval: 3000
+    running: true
+    repeat: false
+    onTriggered: userDataProc.running = true
+	}
 
     function numberToMonth(n){
         return months[n];

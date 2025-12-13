@@ -18,6 +18,7 @@ Scope{
                 console.log("Error: " + socket.errorString)
             } else if (socket.status == WebSocket.Open) {
                 socket.sendTextMessage(JSON.stringify({sender: "qsbar", message: ""}))
+                root.sendMessage("current")                
                 console.log("Connected")
             } else if (socket.status == WebSocket.Closed) {
                 console.log("\nSocket closed")

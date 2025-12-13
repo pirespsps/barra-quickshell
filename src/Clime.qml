@@ -27,7 +27,7 @@ Scope {
 
 	Timer {
 	id: timer_init
-    interval: 1000
+    interval: 3000
     running: true
     repeat: false
     onTriggered: climeProc.running = true

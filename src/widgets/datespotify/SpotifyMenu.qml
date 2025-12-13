@@ -79,12 +79,11 @@ PanelWindow {
                 }
 
                 Row{
-
                     anchors.horizontalCenter: parent.horizontalCenter
                     width: parent.width
-                    spacing: 15
+                    spacing: 25
                     topPadding: 4
-                    leftPadding: width/3 - 5
+                    leftPadding: parent.width/3.5
                     
                     PlayerButton{
                         image: "/home/pires/.config/quickshell/barra-quickshell/assets/icons/previous.png"

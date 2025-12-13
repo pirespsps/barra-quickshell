@@ -10,7 +10,7 @@ Scope {
     Process {
 	id: climeProc
 	command: ["weather-json"]
-	running: false
+	running: true
 
 	stdout: StdioCollector {
 
@@ -23,14 +23,6 @@ Scope {
 
 		}
     	}
-	}
-
-	Timer {
-	id: timer_init
-    interval: 3000
-    running: true
-    repeat: false
-    onTriggered: climeProc.running = true
 	}
 
     Timer {

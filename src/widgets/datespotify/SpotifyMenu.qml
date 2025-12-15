@@ -11,6 +11,7 @@ PanelWindow {
     }
 
     property bool isVisible: false
+    property var bar
 
     id: panel
     visible: isVisible
@@ -113,12 +114,35 @@ PanelWindow {
                 x: leftSide.width
                 color: "transparent"
 
+                Rectangle{
+                    id: nowPlaying
+                    color: Colors.active
+                    width: parent.x * 1.75
+                    height: 25
+                    y: 10
+
+                    Text{
+                        text: "Now playing"
+                        color: "white"
+                        y: this.height / 2
+                        x:5
+                    }
+                }
+
+                Rectangle{
+                    id: barSong
+                    color: Colors.active
+                    width: parent.x * 1.75
+                    height: 25
+                    y: nowPlaying.height + nowPlaying.y + 5
+                }
+
                 VolumeButton{
                     id: volume
                     spicetify: spicetify
                     y: parent.height - 25
                     x: 5
-                }    
+                }
                 
             }
 

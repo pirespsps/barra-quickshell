@@ -9,49 +9,11 @@ Scope {
     property var activeName
     property var signature
     property var runtimeDir
-//
-//    Process{
-//        id: activeProc
-//        command: ["hyprctl","activeworkspace","-j"]
-//        running: true
-//
-//        stdout: StdioCollector{
-//            onStreamFinished:{
-//                var data = JSON.parse(this.text)
-//                root.active = data.id
-//                root.activeName = data.lastwindowtitle
-//            }
-//        }
-//    }
-//
-//    Process {
-//	id: workspaceProc
-//	command: ["hyprctl","workspaces","-j"]
-//	running: true
-//
-//	stdout: StdioCollector {
-//
-//	    onStreamFinished: {
-//
-//		var data = JSON.parse(this.text)
-//
-//        root.workspaces = data.map(workspace => workspace.id)
-//
-//		}
-//    	}
-//	}
-//
-//    Timer{
-//        id: timer_repeat
-//        interval: 1500
-//        running:true
-//        repeat: true
-//        onTriggered:{
-//            workspaceProc.running = true
-//            activeProc.running = true
-//        }
-//    }
-//
+
+    property var activeRegex
+    property var windowNameRegex: /activewindow>>.*/
+    property var createWorkspaceRegex: /createworkspace>>[0-9]+/
+    property var removeWorkspaceRegex: /destroyworkspace>>[0-9]/
 
     Process{
         id: runtimeDirProc
@@ -81,13 +43,43 @@ Scope {
 
     Socket{
         id: socket
-        path: {
-            //timeout ou alguma coisa pra pegar as propriedades certo...
-            root.runtimeDir + "/hypr/" + root.signature + ".socket.sock"
+        //path: root.runtimeDir + "/hypr/" + root.signature + ".socket.sock" 
+        path: `/run/user/1000/hypr/${Quickshell.env("HYPRLAND_INSTANCE_SIGNATURE")}/.socket2.sock`
+        connected: true
+
+        parser: SplitParser{
+
+            onRead: data => {
+
+                if(data.match(root.windowNameRegex) != null){
+                    root.activeName = data.replace(/[activewindow>>][\s\S]+,/,"")
+                }else if(data.match(root.createWorkspaceRegex) != null){
+                    //mudar como imprime....
+                    root.workspaces = root.workspaces.push(data.match(/[0-9]/)[0])
+
+                }else if(data.match(root.activeRegex) != null){
+                    //workspace ativo
+                
+                }else if(data.match(root.removeWorkspaceRegex) != null){
+                    let remove = data.match(/[0-9]/)[0]
+
+                    root.workspaces = root.workspaces.filter((v,i) => i != remove)
+
+                }
+
+                console.log("Data: ", data)
+            }
+
         }
+
+        onError: error => {
+            console.log("Error in connection: ",error)
+        }
+
         Component.onCompleted: {
             console.log("\n\nconnection: ",socket.path, "\nconnected: ",socket.connected,"\n")
         }
+        
     }
 
 }

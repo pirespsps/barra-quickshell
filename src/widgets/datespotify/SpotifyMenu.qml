@@ -114,27 +114,26 @@ PanelWindow {
                 x: leftSide.width
                 color: "transparent"
 
-                Rectangle{
+                OptionItem{
                     id: nowPlaying
-                    color: Colors.active
-                    width: parent.x * 1.75
-                    height: 25
-                    y: 10
-
-                    Text{
-                        text: "Now playing"
-                        color: "white"
-                        y: this.height / 2
-                        x:5
+                    text: "Now playing"
+                    yRec: 15
+                    onAction: pressed => {
+                        if(pressed){
+                            
+                        }else{
+                            
+                        }  
                     }
                 }
 
-                Rectangle{
-                    id: barSong
-                    color: Colors.active
-                    width: parent.x * 1.75
-                    height: 25
-                    y: nowPlaying.height + nowPlaying.y + 5
+                OptionItem{
+                    id: songbar
+                    text: "Bar with songname"
+                    yRec: 5 + nowPlaying.height + nowPlaying.y
+                    onAction: pressed => {
+
+                    }
                 }
 
                 VolumeButton{

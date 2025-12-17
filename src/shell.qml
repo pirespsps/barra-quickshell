@@ -21,6 +21,7 @@ ShellRoot {
 		screen: root.modelData
 		color: Colors.background
 	 	implicitHeight: 35
+		exclusionMode: ExclusionMode.Auto
 
 		anchors {
 		    bottom: true

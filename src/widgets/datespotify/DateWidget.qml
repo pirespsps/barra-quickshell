@@ -1,6 +1,7 @@
 import QtQuick
 import Quickshell
 import "../../"
+import "./SpotifyPlayer" as Player
 
 Rectangle{
 
@@ -23,8 +24,15 @@ Rectangle{
 		font.pixelSize: 12
 	}
 
-	SpotifyMenu{
+	Player.SpotifyMenu{
 		id: spotifyMenu
+	}
+
+	Player.SongBarName{
+		id:songbar
+		text: spotifyMenu.spicetify.songString
+		isActive: spotifyMenu.isSongBar
+		barra: barra
 	}
 
 	MouseArea{

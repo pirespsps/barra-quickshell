@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import Quickshell
 import Quickshell.Widgets
-import "../../"
+import "../../../"
 
 PanelWindow {
 
@@ -12,6 +12,9 @@ PanelWindow {
 
     property bool isVisible: false
     property var bar
+    property bool isNowPlaying
+    property bool isSongBar
+    property var spicetify: spicetify
 
     id: panel
     visible: isVisible
@@ -109,6 +112,7 @@ PanelWindow {
             }
 
             Rectangle{
+                id: rightSide
                 width: panel.width - leftSide.width
                 height: parent.height
                 x: leftSide.width
@@ -120,9 +124,9 @@ PanelWindow {
                     yRec: 15
                     onAction: pressed => {
                         if(pressed){
-                            
+                            panel.isNowPlaying = true
                         }else{
-                            
+                            panel.isNowPlaying = false                            
                         }  
                     }
                 }
@@ -132,7 +136,11 @@ PanelWindow {
                     text: "Bar with songname"
                     yRec: 5 + nowPlaying.height + nowPlaying.y
                     onAction: pressed => {
-
+                        if(pressed){
+                            panel.isSongBar = true
+                        }else{
+                            panel.isSongBar = false
+                        }
                     }
                 }
 
